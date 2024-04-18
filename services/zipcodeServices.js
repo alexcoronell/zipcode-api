@@ -1,3 +1,5 @@
+const zipcodes = require("../data/zipcodes");
+
 class ZipcodeService {
   zipcodes = [
     {
@@ -6,21 +8,25 @@ class ZipcodeService {
     },
   ];
 
+  constructor() {
+    this.zipcodes = zipcodes;
+  }
+
   async find() {
     return new Promise((resolve, reject) => {
-      console.log(this.zipcodes);
+      //console.log(this.zipcodes);
       resolve(this.zipcodes);
     });
   }
 
   async findOne(zip) {
-    const zipcodeDetail = {
-      zip,
-    };
-    if (!zipcodeDetail) {
-      throw new Error("Not found");
-    }
-    return zipcodeDetail;
+    return new Promise((resolve, reject) => {
+      const zipcodeDetail = this.zipcodes.find((zipcode) => zipcode.zip_code == zip)
+      if (!zipcodeDetail) {
+        resolve('Not found')
+      }
+      resolve(zipcodeDetail);
+    })
   }
 }
 
