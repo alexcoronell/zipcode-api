@@ -16,7 +16,7 @@ const apiKeyMiddleware = (req, res, next) => {
 };
 
 // Usa el middleware para todas las rutas
-app.use(apiKeyMiddleware);
+//app.use(apiKeyMiddleware);
 
 app.get("/", (req, res) => {
   res.send("Zipcode API");
