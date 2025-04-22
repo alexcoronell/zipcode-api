@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 require('dotenv').config();
 const routerApi = require('./routes')
 
@@ -15,8 +16,13 @@ const apiKeyMiddleware = (req, res, next) => {
   }
 };
 
-// Usa el middleware para todas las rutas
-//app.use(apiKeyMiddleware);
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET"],
+    allowedHeaders: ["x-api-key"],
+  })
+);
 
 app.get("/", (req, res) => {
   res.status(200).json({
