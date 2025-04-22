@@ -19,7 +19,10 @@ const apiKeyMiddleware = (req, res, next) => {
 //app.use(apiKeyMiddleware);
 
 app.get("/", (req, res) => {
-  res.send("Zipcode API");
+  res.status(200).json({
+    status: "success",
+    message: "API is running",
+  });
 });
 
 app.use(express.json());
