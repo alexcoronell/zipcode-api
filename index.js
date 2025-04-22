@@ -20,7 +20,7 @@ app.use(
   cors({
     origin: "*",
     methods: ["GET"],
-    allowedHeaders: ["x-api-key"],
+    allowedHeaders: ["x-api-key", "Access-Control-Allow-Origin"],
   })
 );
 
