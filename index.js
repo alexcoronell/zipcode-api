@@ -6,22 +6,14 @@ const routerApi = require('./routes')
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware para verificar la API key
-const apiKeyMiddleware = (req, res, next) => {
-  const apiKey = req.headers['x-api-key'];
-  if (apiKey && apiKey === process.env.API_KEY) {
-    next();
-  } else {
-    res.status(403).send("Forbidden: Invalid API key");
-  }
+const corsOptions = { 
+  origin: "*",
+  methods: ["GET"],
+  allowedHeaders: ["x-api-key", "Access-Control-Allow-Origin"],
 };
 
 app.use(
-  cors({
-    origin: "*",
-    methods: ["GET"],
-    allowedHeaders: ["x-api-key", "Access-Control-Allow-Origin"],
-  })
+  cors(corsOptions)
 );
 
 app.get("/", (req, res) => {
